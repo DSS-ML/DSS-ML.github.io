@@ -1,0 +1,823 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-tertiary: #1a1a28;
+
+  /* Road colors */
+  --road-dark: #1c1c24;
+  --road-line: #ffcc00;
+  --road-edge: #2a2a3a;
+
+  /* Course colors */
+  --unsupervised-primary: #00ff88;
+  --unsupervised-secondary: #00cc6a;
+  --unsupervised-glow: rgba(0, 255, 136, 0.3);
+
+  --deeplearning-primary: #ff6b35;
+  --deeplearning-secondary: #ff4500;
+  --deeplearning-glow: rgba(255, 107, 53, 0.3);
+
+  /* Accent colors */
+  --accent-cyan: #00d4ff;
+  --accent-purple: #a855f7;
+  --accent-pink: #ec4899;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b0;
+  --text-muted: #6b6b7b;
+
+  /* Shadows */
+  --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow-glow-green: 0 0 40px var(--unsupervised-glow);
+  --shadow-glow-orange: 0 0 40px var(--deeplearning-glow);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Typography */
+.font-display {
+  font-family: 'Orbitron', monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Game Container */
+.game-container {
+  width: 100vw;
+  height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 0% 50%, rgba(0, 255, 136, 0.03) 0%, transparent 40%),
+    radial-gradient(ellipse at 100% 50%, rgba(255, 107, 53, 0.03) 0%, transparent 40%),
+    linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Star field background */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Road styling */
+.road-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.road-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Car styling */
+.car-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.car {
+  width: 80px;
+  height: 140px;
+  position: relative;
+  animation: car-idle 2s infinite ease-in-out;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes car-idle {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.car-body {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  width: 60px;
+  height: 100px;
+  background: linear-gradient(180deg, #ff2d55 0%, #c41e3a 100%);
+  border-radius: 30px 30px 15px 15px;
+  box-shadow:
+    inset 0 -20px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 45, 85, 0.3);
+}
+
+.car-windshield {
+  position: absolute;
+  top: 35px;
+  left: 18px;
+  width: 44px;
+  height: 30px;
+  background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0f 100%);
+  border-radius: 15px 15px 5px 5px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.car-wheel {
+  position: absolute;
+  width: 16px;
+  height: 30px;
+  background: linear-gradient(90deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
+  border-radius: 4px;
+}
+
+.car-wheel.front-left {
+  top: 30px;
+  left: 0;
+}
+
+.car-wheel.front-right {
+  top: 30px;
+  right: 0;
+}
+
+.car-wheel.back-left {
+  top: 85px;
+  left: 0;
+}
+
+.car-wheel.back-right {
+  top: 85px;
+  right: 0;
+}
+
+.car-headlight {
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background: #ffff88;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ffff88, 0 0 20px #ffff00;
+  animation: headlight-glow 1.5s infinite ease-in-out;
+}
+
+.car-headlight.left {
+  top: 22px;
+  left: 18px;
+}
+
+.car-headlight.right {
+  top: 22px;
+  right: 18px;
+}
+
+@keyframes headlight-glow {
+
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Destination markers */
+.destination {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.destination:hover {
+  transform: scale(1.15);
+}
+
+.destination-marker {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 28px;
+  transition: all 0.3s ease;
+}
+
+.destination-marker::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.destination-marker.unsupervised {
+  background: linear-gradient(135deg, var(--unsupervised-primary) 0%, var(--unsupervised-secondary) 100%);
+  box-shadow: var(--shadow-glow-green);
+}
+
+.destination-marker.unsupervised::before {
+  background: var(--unsupervised-glow);
+}
+
+.destination-marker.deep-learning {
+  background: linear-gradient(135deg, var(--deeplearning-primary) 0%, var(--deeplearning-secondary) 100%);
+  box-shadow: var(--shadow-glow-orange);
+}
+
+.destination-marker.deep-learning::before {
+  background: var(--deeplearning-glow);
+}
+
+.destination-label {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* Header */
+.game-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 200;
+  background: linear-gradient(180deg, rgba(10, 10, 15, 0.9) 0%, transparent 100%);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+.logo-text h1 {
+  font-size: 24px;
+  background: linear-gradient(90deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-text p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.nav-info {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-stat {
+  text-align: center;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-stat-value {
+  font-family: 'Orbitron', monospace;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.nav-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Course path labels - TOP POSITION (smaller) */
+.path-label-top {
+  position: absolute;
+  top: 100px;
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 8px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  z-index: 150;
+}
+
+.path-label-top.unsupervised {
+  left: 30px;
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid var(--unsupervised-primary);
+  color: var(--unsupervised-primary);
+  text-shadow: 0 0 10px var(--unsupervised-glow);
+}
+
+.path-label-top.deep-learning {
+  right: 30px;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid var(--deeplearning-primary);
+  color: var(--deeplearning-primary);
+  text-shadow: 0 0 10px var(--deeplearning-glow);
+}
+
+/* Motorcycle styling - with path animation */
+.motorcycle-wrapper {
+  position: absolute;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.motorcycle-wrapper.moving {
+  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.motorcycle-container {
+  transition: transform 0.3s ease;
+}
+
+.motorcycle {
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
+  animation: bike-idle 1.5s infinite ease-in-out;
+}
+
+.motorcycle-wrapper.moving .motorcycle {
+  animation: bike-moving 0.2s infinite linear;
+}
+
+@keyframes bike-idle {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes bike-moving {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1.05);
+  }
+
+  50% {
+    transform: translateY(-2px) scale(1.05);
+  }
+}
+
+.headlight {
+  filter: drop-shadow(0 0 8px #ffff88);
+}
+
+/* Selection highlight for destinations */
+.destination.selected .destination-marker {
+  transform: scale(1.2);
+  box-shadow: 0 0 60px currentColor;
+}
+
+.destination.selected .destination-marker::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid white;
+  animation: selected-ring 1s infinite;
+}
+
+@keyframes selected-ring {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* Footer hint */
+.footer-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: var(--text-muted);
+  text-align: center;
+  z-index: 200;
+}
+
+.footer-hint span {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Lecture Page */
+.lecture-page {
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-primary);
+  overflow-y: auto;
+  position: relative;
+}
+
+.lecture-header {
+  padding: 40px 60px;
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.lecture-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  color: var(--text-secondary);
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-bottom: 30px;
+}
+
+.lecture-back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  transform: translateX(-5px);
+}
+
+.lecture-title-section {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.lecture-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.lecture-icon.unsupervised {
+  background: linear-gradient(135deg, var(--unsupervised-primary) 0%, var(--unsupervised-secondary) 100%);
+  box-shadow: var(--shadow-glow-green);
+}
+
+.lecture-icon.deep-learning {
+  background: linear-gradient(135deg, var(--deeplearning-primary) 0%, var(--deeplearning-secondary) 100%);
+  box-shadow: var(--shadow-glow-orange);
+}
+
+.lecture-title h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.lecture-title .course-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.course-badge.unsupervised {
+  background: var(--unsupervised-glow);
+  color: var(--unsupervised-primary);
+}
+
+.course-badge.deep-learning {
+  background: var(--deeplearning-glow);
+  color: var(--deeplearning-primary);
+}
+
+.lecture-content {
+  padding: 50px 60px;
+  max-width: 1200px;
+}
+
+.lecture-description {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 50px;
+  max-width: 800px;
+}
+
+.notebooks-section h2 {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: var(--text-primary);
+}
+
+.notebooks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.notebook-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 30px;
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.notebook-card:hover {
+  background: var(--bg-tertiary);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.notebook-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.notebook-icon.lecture {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+}
+
+.notebook-icon.assignment {
+  background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%);
+}
+
+.notebook-icon.solution {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.notebook-info h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.notebook-info p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.notebook-arrow {
+  margin-left: auto;
+  font-size: 20px;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.notebook-card:hover .notebook-arrow {
+  color: var(--text-primary);
+  transform: translateX(5px);
+}
+
+/* Difficulty badge */
+.difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: 15px;
+}
+
+.difficulty-badge.beginner {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.difficulty-badge.intermediate {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.difficulty-badge.advanced {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .destination-marker {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .destination-label {
+    font-size: 10px;
+  }
+
+  .path-label {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-header {
+    padding: 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-info {
+    display: none;
+  }
+
+  .path-label {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+
+  .lecture-header,
+  .lecture-content {
+    padding: 30px;
+  }
+
+  .lecture-title h1 {
+    font-size: 24px;
+  }
+}
