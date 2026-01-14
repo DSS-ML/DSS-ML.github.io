@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Motorcycle from './Motorcycle';
+import SpaceShuttle from './SpaceShuttle';
 import Stars from './Stars';
-import RoadSVG from './RoadSVG';
+import Constellations from './Constellations';
 import { courses } from '../data/courses';
 
 const GameMap = () => {
     const navigate = useNavigate();
     const [selectedIndex, setSelectedIndex] = useState(-1);
-    const [motorcyclePos, setMotorcyclePos] = useState({ x: 50, y: 50 }); // percentage
-    const [motorcycleRotation, setMotorcycleRotation] = useState(0);
-    const [isMoving, setIsMoving] = useState(false);
+    const [shuttlePos, setShuttlePos] = useState({ x: 50, y: 50 });
+    const [shuttleRotation, setShuttleRotation] = useState(0);
+    const [isFlying, setIsFlying] = useState(false);
 
     // All topics with positions
     const allTopics = [
@@ -18,53 +18,55 @@ const GameMap = () => {
         ...courses.deepLearning.topics.map(t => ({ ...t, course: 'deep-learning' }))
     ];
 
-    // Destination positions (as percentages)
+    // Planet positions (as percentages) - Two constellations
     const destinations = {
-        'clustering': { x: 26, y: 22, angle: -45 },
-        'dimensionality-reduction': { x: 15, y: 50, angle: -90 },
-        'recommender-systems': { x: 26, y: 78, angle: 135 },
-        'networks': { x: 74, y: 18, angle: 45 },
-        'howto': { x: 81, y: 38, angle: 30 },
-        'gnn': { x: 81, y: 62, angle: -30 },
-        'transformers': { x: 74, y: 82, angle: -135 }
+        // Left constellation - Unsupervised Learning
+        'clustering': { x: 25, y: 20, angle: -30 },
+        'dimensionality-reduction': { x: 15, y: 45, angle: -60 },
+        'recommender-systems': { x: 25, y: 72, angle: -120 },
+
+        // Right constellation - Deep Learning  
+        'networks': { x: 75, y: 15, angle: 30 },
+        'howto': { x: 82, y: 35, angle: 15 },
+        'gnn': { x: 82, y: 58, angle: -15 },
+        'transformers': { x: 75, y: 82, angle: -30 }
     };
 
     // Center position
     const centerPos = { x: 50, y: 50 };
 
-    // Animate motorcycle to destination then navigate
-    const driveToDestination = (topicId, index) => {
+    // Fly shuttle to destination then navigate
+    const flyToDestination = (topicId, index) => {
         const dest = destinations[topicId];
-        if (!dest || isMoving) return;
+        if (!dest || isFlying) return;
 
-        setIsMoving(true);
+        setIsFlying(true);
         setSelectedIndex(index);
 
         // Calculate angle to destination
-        const angle = Math.atan2(dest.y - centerPos.y, dest.x - centerPos.x) * (180 / Math.PI) + 90;
-        setMotorcycleRotation(angle);
+        const angle = Math.atan2(dest.y - shuttlePos.y, dest.x - shuttlePos.x) * (180 / Math.PI);
+        setShuttleRotation(angle);
 
         // Animate to destination
         setTimeout(() => {
-            setMotorcyclePos({ x: dest.x, y: dest.y });
+            setShuttlePos({ x: dest.x, y: dest.y });
         }, 100);
 
         // Navigate after animation completes
         setTimeout(() => {
             navigate(`/topic/${topicId}`);
-            // Reset position for when user comes back
             setTimeout(() => {
-                setMotorcyclePos(centerPos);
-                setMotorcycleRotation(0);
-                setIsMoving(false);
+                setShuttlePos(centerPos);
+                setShuttleRotation(0);
+                setIsFlying(false);
                 setSelectedIndex(-1);
             }, 100);
-        }, 800);
+        }, 900);
     };
 
     // Keyboard navigation
     const handleKeyDown = useCallback((e) => {
-        if (isMoving) return;
+        if (isFlying) return;
 
         const topicCount = allTopics.length;
 
@@ -85,47 +87,41 @@ const GameMap = () => {
                 break;
             case 'ArrowUp':
                 e.preventDefault();
-                setSelectedIndex(prev => {
-                    const newIndex = prev <= 0 ? topicCount - 1 : prev - 1;
-                    return newIndex;
-                });
+                setSelectedIndex(prev => prev <= 0 ? topicCount - 1 : prev - 1);
                 break;
             case 'ArrowDown':
                 e.preventDefault();
-                setSelectedIndex(prev => {
-                    const newIndex = (prev + 1) % topicCount;
-                    return newIndex;
-                });
+                setSelectedIndex(prev => (prev + 1) % topicCount);
                 break;
             case 'Enter':
                 e.preventDefault();
                 if (selectedIndex >= 0 && selectedIndex < topicCount) {
-                    driveToDestination(allTopics[selectedIndex].id, selectedIndex);
+                    flyToDestination(allTopics[selectedIndex].id, selectedIndex);
                 }
                 break;
             default:
                 break;
         }
-    }, [allTopics, selectedIndex, isMoving]);
+    }, [allTopics, selectedIndex, isFlying]);
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [handleKeyDown]);
 
-    const handleDestinationClick = (topicId, index) => {
-        driveToDestination(topicId, index);
+    const handlePlanetClick = (topicId, index) => {
+        flyToDestination(topicId, index);
     };
 
     return (
         <div className="game-container" tabIndex={0}>
-            {/* Animated star background */}
-            <Stars count={150} />
+            {/* Deep space star background */}
+            <Stars count={200} />
 
             {/* Header */}
             <header className="game-header">
                 <div className="logo">
-                    <div className="logo-icon">🏍️</div>
+                    <div className="logo-icon">🚀</div>
                     <div className="logo-text">
                         <h1>DSS-ML</h1>
                         <p>Data Science Journey</p>
@@ -134,40 +130,40 @@ const GameMap = () => {
                 <div className="nav-info">
                     <div className="nav-stat">
                         <div className="nav-stat-value">7</div>
-                        <div className="nav-stat-label">Destinations</div>
+                        <div className="nav-stat-label">Planets</div>
                     </div>
                     <div className="nav-stat">
                         <div className="nav-stat-value">2025</div>
-                        <div className="nav-stat-label">Edition</div>
+                        <div className="nav-stat-label">Mission</div>
                     </div>
                 </div>
             </header>
 
-            {/* Course path labels - TOP POSITION, SMALLER */}
-            <div className="path-label-top unsupervised">
-                🔍 Unsupervised Learning
+            {/* Constellation labels at top */}
+            <div className="constellation-label unsupervised">
+                ✨ Unsupervised Learning
             </div>
-            <div className="path-label-top deep-learning">
-                🧠 Deep Learning
-            </div>
-
-            {/* Road visualization */}
-            <div className="road-container">
-                <RoadSVG />
+            <div className="constellation-label deep-learning">
+                ✨ Deep Learning
             </div>
 
-            {/* Animated motorcycle - moves along path */}
+            {/* Constellation lines */}
+            <div className="constellations-container">
+                <Constellations />
+            </div>
+
+            {/* Space shuttle in center - flies to planets */}
             <div
-                className={`motorcycle-wrapper ${isMoving ? 'moving' : ''}`}
+                className={`shuttle-wrapper ${isFlying ? 'flying' : ''}`}
                 style={{
-                    left: `${motorcyclePos.x}%`,
-                    top: `${motorcyclePos.y}%`,
+                    left: `${shuttlePos.x}%`,
+                    top: `${shuttlePos.y}%`,
                 }}
             >
-                <Motorcycle rotation={motorcycleRotation} />
+                <SpaceShuttle rotation={shuttleRotation} />
             </div>
 
-            {/* Destination markers */}
+            {/* Planet destinations */}
             {allTopics.map((topic, index) => {
                 const dest = destinations[topic.id];
                 if (!dest) return null;
@@ -175,21 +171,22 @@ const GameMap = () => {
                 return (
                     <div
                         key={topic.id}
-                        className={`destination ${selectedIndex === index ? 'selected' : ''}`}
+                        className={`planet ${topic.course} ${selectedIndex === index ? 'selected' : ''}`}
                         style={{ left: `${dest.x}%`, top: `${dest.y}%` }}
-                        onClick={() => handleDestinationClick(topic.id, index)}
+                        onClick={() => handlePlanetClick(topic.id, index)}
                     >
-                        <div className={`destination-marker ${topic.course}`}>
-                            {topic.icon}
+                        <div className="planet-body">
+                            <div className="planet-glow"></div>
+                            <span className="planet-icon">{topic.icon}</span>
                         </div>
-                        <div className="destination-label">{topic.name}</div>
+                        <div className="planet-label">{topic.name}</div>
                     </div>
                 );
             })}
 
             {/* Footer hint */}
             <div className="footer-hint">
-                <span>🎮 Use arrow keys + Enter, or click any destination</span>
+                <span>🚀 Use arrow keys + Enter, or click any planet to explore</span>
             </div>
         </div>
     );

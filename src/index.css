@@ -417,118 +417,217 @@ h6 {
   letter-spacing: 0.1em;
 }
 
-/* Course path labels - TOP POSITION (smaller) */
-.path-label-top {
+/* Constellation labels at top */
+.constellation-label {
   position: absolute;
   top: 100px;
   font-family: 'Orbitron', monospace;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 8px 16px;
-  border-radius: 20px;
+  letter-spacing: 0.15em;
+  padding: 6px 14px;
+  border-radius: 15px;
   backdrop-filter: blur(10px);
   z-index: 150;
 }
 
-.path-label-top.unsupervised {
-  left: 30px;
+.constellation-label.unsupervised {
+  left: 50px;
   background: rgba(0, 255, 136, 0.1);
-  border: 1px solid var(--unsupervised-primary);
+  border: 1px solid rgba(0, 255, 136, 0.4);
   color: var(--unsupervised-primary);
   text-shadow: 0 0 10px var(--unsupervised-glow);
 }
 
-.path-label-top.deep-learning {
-  right: 30px;
+.constellation-label.deep-learning {
+  right: 50px;
   background: rgba(255, 107, 53, 0.1);
-  border: 1px solid var(--deeplearning-primary);
+  border: 1px solid rgba(255, 107, 53, 0.4);
   color: var(--deeplearning-primary);
   text-shadow: 0 0 10px var(--deeplearning-glow);
 }
 
-/* Motorcycle styling - with path animation */
-.motorcycle-wrapper {
+/* Constellations container */
+.constellations-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.constellations-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Space Shuttle styling */
+.shuttle-wrapper {
   position: absolute;
   z-index: 100;
   transform: translate(-50%, -50%);
-  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-    top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    top 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.motorcycle-wrapper.moving {
-  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-    top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+.shuttle-wrapper.flying {
+  transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    top 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.motorcycle-container {
+.shuttle-container {
   transition: transform 0.3s ease;
 }
 
-.motorcycle {
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
-  animation: bike-idle 1.5s infinite ease-in-out;
+.shuttle {
+  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.4));
+  animation: shuttle-hover 2s infinite ease-in-out;
 }
 
-.motorcycle-wrapper.moving .motorcycle {
-  animation: bike-moving 0.2s infinite linear;
+.shuttle-wrapper.flying .shuttle {
+  animation: shuttle-flying 0.15s infinite linear;
+  filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.6));
 }
 
-@keyframes bike-idle {
+@keyframes shuttle-hover {
 
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0) translateX(0);
   }
 
-  50% {
-    transform: translateY(-4px);
+  25% {
+    transform: translateY(-3px) translateX(2px);
+  }
+
+  75% {
+    transform: translateY(3px) translateX(-2px);
   }
 }
 
-@keyframes bike-moving {
+@keyframes shuttle-flying {
 
   0%,
   100% {
-    transform: translateY(0) scale(1.05);
+    transform: scale(1.1);
   }
 
   50% {
-    transform: translateY(-2px) scale(1.05);
+    transform: scale(1.15);
   }
 }
 
-.headlight {
-  filter: drop-shadow(0 0 8px #ffff88);
+/* Planet destinations */
+.planet {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(-50%, -50%);
 }
 
-/* Selection highlight for destinations */
-.destination.selected .destination-marker {
-  transform: scale(1.2);
-  box-shadow: 0 0 60px currentColor;
+.planet:hover {
+  transform: translate(-50%, -50%) scale(1.15);
 }
 
-.destination.selected .destination-marker::after {
-  content: '';
+.planet-body {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 28px;
+  transition: all 0.3s ease;
+}
+
+.planet-glow {
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 3px solid white;
-  animation: selected-ring 1s infinite;
+  animation: planet-pulse 3s infinite ease-in-out;
 }
 
-@keyframes selected-ring {
+@keyframes planet-pulse {
 
   0%,
   100% {
     transform: scale(1);
-    opacity: 1;
+    opacity: 0.5;
   }
 
   50% {
     transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.planet.unsupervised .planet-body {
+  background: radial-gradient(circle at 30% 30%, #40ffaa 0%, #00cc6a 50%, #008844 100%);
+  box-shadow:
+    0 0 30px var(--unsupervised-glow),
+    inset -10px -10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.planet.unsupervised .planet-glow {
+  background: var(--unsupervised-glow);
+}
+
+.planet.deep-learning .planet-body {
+  background: radial-gradient(circle at 30% 30%, #ff9966 0%, #ff6b35 50%, #cc4400 100%);
+  box-shadow:
+    0 0 30px var(--deeplearning-glow),
+    inset -10px -10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.planet.deep-learning .planet-glow {
+  background: var(--deeplearning-glow);
+}
+
+.planet-icon {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.planet-label {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+  padding: 4px 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+/* Planet selection highlight */
+.planet.selected .planet-body {
+  transform: scale(1.15);
+}
+
+.planet.selected .planet-glow {
+  animation: planet-selected 0.8s infinite;
+}
+
+@keyframes planet-selected {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.5);
     opacity: 0;
   }
 }
