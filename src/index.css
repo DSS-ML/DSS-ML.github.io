@@ -24,6 +24,7 @@
   --accent-cyan: #00d4ff;
   --accent-purple: #a855f7;
   --accent-pink: #ec4899;
+  --starwars-yellow: #ffd700;
 
   /* Text */
   --text-primary: #ffffff;
@@ -388,6 +389,11 @@ h6 {
   color: var(--text-secondary);
   letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+.logo-galaxy {
+  color: var(--unsupervised-primary) !important;
+  font-size: 10px !important;
 }
 
 .nav-info {
@@ -1138,5 +1144,418 @@ h6 {
 
   .lecture-title h1 {
     font-size: 24px;
+  }
+}
+
+/* ============================================
+   WELCOME PAGE - Star Wars Style
+   ============================================ */
+.welcome-page {
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at 50% 50%, #0a0a1a 0%, #000005 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-content {
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.welcome-crawl {
+  perspective: 400px;
+}
+
+.welcome-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--starwars-yellow);
+  text-shadow:
+    0 0 20px rgba(255, 215, 0, 0.5),
+    0 0 40px rgba(255, 215, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  animation: title-glow 3s infinite ease-in-out;
+}
+
+@keyframes title-glow {
+
+  0%,
+  100% {
+    text-shadow:
+      0 0 20px rgba(255, 215, 0, 0.5),
+      0 0 40px rgba(255, 215, 0, 0.3),
+      0 4px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  50% {
+    text-shadow:
+      0 0 30px rgba(255, 215, 0, 0.7),
+      0 0 60px rgba(255, 215, 0, 0.5),
+      0 4px 8px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.welcome-subtitle {
+  font-family: 'Orbitron', monospace;
+  font-size: 20px;
+  color: var(--starwars-yellow);
+  opacity: 0.9;
+  letter-spacing: 0.15em;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+.welcome-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 500px;
+}
+
+.welcome-falcon {
+  animation: falcon-float 4s infinite ease-in-out;
+}
+
+@keyframes falcon-float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+
+  75% {
+    transform: translateY(10px) rotate(-2deg);
+  }
+}
+
+.hyperspace-button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 50px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%);
+  border: 2px solid var(--starwars-yellow);
+  border-radius: 50px;
+  color: var(--starwars-yellow);
+  font-family: 'Orbitron', monospace;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.hyperspace-button:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0.2) 100%);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+  transform: scale(1.05);
+}
+
+.hyperspace-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.button-icon {
+  font-size: 24px;
+}
+
+.welcome-footer {
+  position: absolute;
+  bottom: 30px;
+  z-index: 10;
+}
+
+.welcome-footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.welcome-footer a:hover {
+  color: var(--starwars-yellow);
+}
+
+/* Hyperspace jump effect */
+.hyperspace-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.hyperspace-line {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: hyperspace-stretch 1s forwards ease-in;
+}
+
+@keyframes hyperspace-stretch {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleX(100) translateX(50vw);
+    opacity: 0;
+  }
+}
+
+.welcome-page.hyperspace-jump .welcome-content {
+  animation: zoom-away 1s forwards ease-in;
+}
+
+@keyframes zoom-away {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   GALAXY SELECTION PAGE
+   ============================================ */
+.galaxy-selection-page {
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at 50% 30%, #0a0a1a 0%, #000005 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.galaxy-header {
+  text-align: center;
+  z-index: 10;
+  margin-bottom: 20px;
+}
+
+.galaxy-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.galaxy-logo .logo-icon {
+  font-size: 40px;
+}
+
+.galaxy-logo h1 {
+  font-family: 'Orbitron', monospace;
+  font-size: 36px;
+  color: var(--starwars-yellow);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.galaxy-subtitle {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  color: var(--text-secondary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.galaxy-falcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  opacity: 0.3;
+  transition: all 0.5s ease;
+}
+
+.galaxy-selection-page.flying-to-galaxy .galaxy-falcon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+.galaxies-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  max-width: 900px;
+  z-index: 10;
+  margin-top: 30px;
+}
+
+.galaxy-card {
+  position: relative;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  animation: card-fade-in 0.5s ease-out backwards;
+}
+
+@keyframes card-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.galaxy-card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(60px);
+}
+
+.galaxy-card:hover .galaxy-card-glow {
+  opacity: 0.15;
+}
+
+.galaxy-card:hover {
+  border-color: var(--galaxy-color);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.galaxy-card.locked {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.galaxy-card.locked:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.galaxy-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.galaxy-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.galaxy-card h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.galaxy-year {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(255, 215, 0, 0.2);
+  color: var(--starwars-yellow);
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.galaxy-card.locked .galaxy-year {
+  background: rgba(100, 100, 100, 0.2);
+  color: var(--text-muted);
+}
+
+.galaxy-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.galaxy-enter {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: var(--starwars-yellow);
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.galaxy-card:hover .galaxy-enter {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.back-to-welcome {
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  color: var(--text-secondary);
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.back-to-welcome:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.galaxy-selection-page.flying-to-galaxy .galaxies-container {
+  animation: galaxies-zoom 0.8s forwards ease-in;
+}
+
+@keyframes galaxies-zoom {
+  to {
+    transform: scale(2);
+    opacity: 0;
   }
 }

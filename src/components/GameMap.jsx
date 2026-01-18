@@ -120,10 +120,11 @@ const GameMap = () => {
 
             {/* Header */}
             <header className="game-header">
-                <div className="logo">
+                <div className="logo" onClick={() => navigate('/galaxies')} style={{ cursor: 'pointer' }}>
                     <div className="logo-icon">🚀</div>
                     <div className="logo-text">
                         <h1>DSS-ML</h1>
+                        <p className="logo-galaxy">Unsupervised Learning 2026</p>
                     </div>
                 </div>
                 <div className="nav-info">
