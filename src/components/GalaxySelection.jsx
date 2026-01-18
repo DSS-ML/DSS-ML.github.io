@@ -20,32 +20,32 @@ const GalaxySelection = () => {
             route: '/galaxy/unsupervised-2026'
         },
         {
-            id: 'deep-learning',
-            name: 'Deep Learning',
+            id: 'locked-1',
+            name: '',
             year: 'Unlock',
             description: '',
-            icon: '🔮',
-            color: '#ff6b35',
+            icon: '🔒',
+            color: '#666',
             locked: true,
             route: null
         },
         {
-            id: 'supervised',
-            name: 'Supervised Learning',
+            id: 'locked-2',
+            name: '',
             year: 'Unlock',
             description: '',
-            icon: '🌟',
-            color: '#a855f7',
+            icon: '🔒',
+            color: '#666',
             locked: true,
             route: null
         },
         {
-            id: 'nlp',
-            name: 'Natural Language Processing',
+            id: 'locked-3',
+            name: '',
             year: 'Unlock',
             description: '',
-            icon: '💬',
-            color: '#00d4ff',
+            icon: '🔒',
+            color: '#666',
             locked: true,
             route: null
         }
