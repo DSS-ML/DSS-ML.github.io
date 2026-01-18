@@ -124,7 +124,6 @@ const GameMap = () => {
                     <div className="logo-icon">🚀</div>
                     <div className="logo-text">
                         <h1>DSS-ML</h1>
-                        <p>Data Science Journey</p>
                     </div>
                 </div>
                 <div className="nav-info">
