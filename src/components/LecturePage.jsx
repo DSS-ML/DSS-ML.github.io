@@ -59,7 +59,7 @@ const LecturePage = () => {
             <Stars count={80} />
 
             <div className="lecture-header">
-                <Link to="/" className="lecture-back-btn">
+                <Link to="/galaxy/unsupervised-2026" className="lecture-back-btn">
                     ← Fly Back to Map
                 </Link>
 
