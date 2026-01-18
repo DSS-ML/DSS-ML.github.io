@@ -22,8 +22,8 @@ const GalaxySelection = () => {
         {
             id: 'deep-learning',
             name: 'Deep Learning',
-            year: 'Coming Soon',
-            description: 'Neural networks and beyond',
+            year: 'Unlock',
+            description: '',
             icon: '🔮',
             color: '#ff6b35',
             locked: true,
@@ -32,8 +32,8 @@ const GalaxySelection = () => {
         {
             id: 'supervised',
             name: 'Supervised Learning',
-            year: 'Coming Soon',
-            description: 'Classification and regression',
+            year: 'Unlock',
+            description: '',
             icon: '🌟',
             color: '#a855f7',
             locked: true,
@@ -42,8 +42,8 @@ const GalaxySelection = () => {
         {
             id: 'nlp',
             name: 'Natural Language Processing',
-            year: 'Coming Soon',
-            description: 'Understanding human language',
+            year: 'Unlock',
+            description: '',
             icon: '💬',
             color: '#00d4ff',
             locked: true,

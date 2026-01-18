@@ -43,10 +43,6 @@ const WelcomePage = () => {
                         A GitHub profile dedicated to teaching<br />
                         Data Science & Machine Learning
                     </p>
-                    <p className="welcome-tagline">
-                        Explore the galaxy of knowledge through<br />
-                        interactive notebooks and hands-on projects
-                    </p>
                 </div>
 
                 {/* Millennium Falcon */}
