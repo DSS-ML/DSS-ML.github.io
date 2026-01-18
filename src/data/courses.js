@@ -12,7 +12,7 @@ export const courses = {
                 name: 'Introduction',
                 description: 'Introduction to Unsupervised Machine Learning and Metrics - Learn the fundamentals of unsupervised learning approaches',
                 icon: '📊',
-                difficulty: 'Beginner',
+                difficulty: '',
                 locked: false,
                 baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
                 notebooks: [
