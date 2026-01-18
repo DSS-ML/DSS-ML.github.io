@@ -877,6 +877,122 @@ h6 {
   color: #ef4444;
 }
 
+/* Readings section */
+.readings-section {
+  margin-top: 50px;
+}
+
+.readings-section h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.readings-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 25px;
+}
+
+.readings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reading-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(236, 72, 153, 0.05) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.reading-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.reading-card:hover {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(236, 72, 153, 0.08) 100%);
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateX(8px);
+}
+
+.reading-card:hover::before {
+  opacity: 1;
+}
+
+.reading-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.reading-info {
+  flex: 1;
+}
+
+.reading-info h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.reading-authors {
+  font-size: 14px;
+  color: var(--accent-purple);
+  margin-bottom: 4px;
+  font-style: italic;
+}
+
+.reading-details {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.reading-chapter {
+  font-size: 13px;
+  color: var(--accent-cyan);
+  font-weight: 500;
+  padding: 4px 10px;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.reading-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+}
+
 /* Locked planet styles */
 .planet.locked {
   cursor: not-allowed;
@@ -920,15 +1036,20 @@ h6 {
 }
 
 @keyframes alien-wave {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotate(-10deg) translateY(0);
   }
+
   25% {
     transform: rotate(10deg) translateY(-3px);
   }
+
   50% {
     transform: rotate(-10deg) translateY(0);
   }
+
   75% {
     transform: rotate(10deg) translateY(-3px);
   }
@@ -962,10 +1083,13 @@ h6 {
 }
 
 @keyframes speech-pop {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: translateX(-50%) scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: translateX(-50%) scale(0.95);

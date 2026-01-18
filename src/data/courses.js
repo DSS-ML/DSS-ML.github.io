@@ -17,6 +17,38 @@ export const courses = {
                 baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
                 notebooks: [
                     { name: 'Lecture', file: 'Lecture_1.ipynb', type: 'lecture' }
+                ],
+                readings: [
+                    {
+                        title: 'The Elements of Statistical Learning',
+                        authors: 'Hastie, T., Tibshirani, R., & Friedman, J.',
+                        year: 2009,
+                        edition: '2nd ed.',
+                        publisher: 'Springer',
+                        chapter: 'Chapter 14',
+                        file: 'elementsof.pdf',
+                        icon: '📗'
+                    },
+                    {
+                        title: 'Outlier Analysis',
+                        authors: 'Aggarwal, C. C.',
+                        year: 2017,
+                        edition: '2nd ed.',
+                        publisher: 'Springer',
+                        chapter: 'Chapter 2: Data Models and Data Types',
+                        file: 'outlier.pdf',
+                        icon: '📕'
+                    },
+                    {
+                        title: 'Pattern Recognition and Machine Learning',
+                        authors: 'Bishop, C. M.',
+                        year: 2006,
+                        edition: '',
+                        publisher: 'Springer',
+                        chapter: 'Section 2.5: Nonparametric Methods',
+                        file: 'bishop.pdf',
+                        icon: '📘'
+                    }
                 ]
             },
             {

@@ -50,13 +50,17 @@ const LecturePage = () => {
         return topic.baseUrl;
     };
 
+    const getReadingUrl = (reading) => {
+        return `${topic.baseUrl}/${reading.file}`;
+    };
+
     return (
         <div className="lecture-page">
             <Stars count={80} />
 
             <div className="lecture-header">
                 <Link to="/" className="lecture-back-btn">
-                    ← Drive Back to Map
+                    ← Fly Back to Map
                 </Link>
 
                 <div className="lecture-title-section">
@@ -66,9 +70,11 @@ const LecturePage = () => {
                     <div className="lecture-title">
                         <h1>
                             {topic.name}
-                            <span className={`difficulty-badge ${topic.difficulty.toLowerCase()}`}>
-                                {topic.difficulty}
-                            </span>
+                            {topic.difficulty && (
+                                <span className={`difficulty-badge ${topic.difficulty.toLowerCase()}`}>
+                                    {topic.difficulty}
+                                </span>
+                            )}
                         </h1>
                         <span className={`course-badge ${courseType}`}>
                             {topic.course.name}
@@ -105,6 +111,36 @@ const LecturePage = () => {
                         ))}
                     </div>
                 </div>
+
+                {/* Readings Section */}
+                {topic.readings && topic.readings.length > 0 && (
+                    <div className="readings-section">
+                        <h2>📖 Recommended Readings</h2>
+                        <p className="readings-subtitle">Theoretical foundations to deepen your understanding</p>
+                        <div className="readings-grid">
+                            {topic.readings.map((reading, index) => (
+                                <a
+                                    key={index}
+                                    href={getReadingUrl(reading)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="reading-card"
+                                >
+                                    <div className="reading-icon">{reading.icon}</div>
+                                    <div className="reading-info">
+                                        <h3>{reading.title}</h3>
+                                        <p className="reading-authors">{reading.authors} ({reading.year})</p>
+                                        <p className="reading-details">
+                                            {reading.edition && `${reading.edition} • `}{reading.publisher}
+                                        </p>
+                                        <p className="reading-chapter">{reading.chapter}</p>
+                                    </div>
+                                    <span className="reading-badge">PDF</span>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 <div style={{ marginTop: '40px', padding: '20px', background: 'rgba(255,255,255,0.03)', borderRadius: '12px' }}>
                     <h3 style={{ fontFamily: 'Orbitron', fontSize: '14px', marginBottom: '10px', color: 'var(--text-secondary)' }}>
