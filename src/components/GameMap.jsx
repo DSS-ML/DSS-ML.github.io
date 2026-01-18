@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SpaceShuttle from './SpaceShuttle';
+import MillenniumFalcon from './MillenniumFalcon';
 import Stars from './Stars';
 import Constellations from './Constellations';
 import { courses } from '../data/courses';
@@ -19,11 +19,16 @@ const GameMap = () => {
     ];
 
     // Planet positions (as percentages) - Two constellations
+    // Left: 6 Unsupervised planets in 2x3 grid
+    // Right: 4 Deep Learning planets
     const destinations = {
-        // Left constellation - Unsupervised Learning
-        'clustering': { x: 25, y: 20, angle: -30 },
-        'dimensionality-reduction': { x: 15, y: 45, angle: -60 },
-        'recommender-systems': { x: 25, y: 72, angle: -120 },
+        // Left constellation - Unsupervised Learning (2 columns x 3 rows)
+        'introduction': { x: 18, y: 22, angle: -30 },
+        'topic-2': { x: 32, y: 22, angle: -15 },
+        'topic-3': { x: 18, y: 47, angle: -45 },
+        'topic-4': { x: 32, y: 47, angle: 0 },
+        'topic-5': { x: 18, y: 72, angle: -60 },
+        'topic-6': { x: 32, y: 72, angle: -30 },
 
         // Right constellation - Deep Learning  
         'networks': { x: 75, y: 15, angle: 30 },
@@ -36,9 +41,11 @@ const GameMap = () => {
     const centerPos = { x: 50, y: 50 };
 
     // Fly shuttle to destination then navigate
-    const flyToDestination = (topicId, index) => {
+    const flyToDestination = (topicId, index, isLocked) => {
+        if (isLocked || isFlying) return;
+
         const dest = destinations[topicId];
-        if (!dest || isFlying) return;
+        if (!dest) return;
 
         setIsFlying(true);
         setSelectedIndex(index);
@@ -69,19 +76,20 @@ const GameMap = () => {
         if (isFlying) return;
 
         const topicCount = allTopics.length;
+        const unlockedTopics = allTopics.filter(t => !t.locked);
 
         switch (e.key) {
             case 'ArrowLeft':
                 e.preventDefault();
                 setSelectedIndex(prev => {
-                    const newIndex = prev <= 2 && prev >= 0 ? (prev + 1) % 3 : 0;
+                    const newIndex = prev <= 5 && prev >= 0 ? (prev + 1) % 6 : 0;
                     return newIndex;
                 });
                 break;
             case 'ArrowRight':
                 e.preventDefault();
                 setSelectedIndex(prev => {
-                    const newIndex = prev >= 3 ? ((prev - 3 + 1) % 4) + 3 : 3;
+                    const newIndex = prev >= 6 ? ((prev - 6 + 1) % 4) + 6 : 6;
                     return newIndex;
                 });
                 break;
@@ -96,7 +104,10 @@ const GameMap = () => {
             case 'Enter':
                 e.preventDefault();
                 if (selectedIndex >= 0 && selectedIndex < topicCount) {
-                    flyToDestination(allTopics[selectedIndex].id, selectedIndex);
+                    const topic = allTopics[selectedIndex];
+                    if (!topic.locked) {
+                        flyToDestination(topic.id, selectedIndex, topic.locked);
+                    }
                 }
                 break;
             default:
@@ -109,9 +120,13 @@ const GameMap = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [handleKeyDown]);
 
-    const handlePlanetClick = (topicId, index) => {
-        flyToDestination(topicId, index);
+    const handlePlanetClick = (topicId, index, isLocked) => {
+        flyToDestination(topicId, index, isLocked);
     };
+
+    // Count unlocked planets
+    const unlockedCount = allTopics.filter(t => !t.locked).length;
+    const totalCount = allTopics.length;
 
     return (
         <div className="game-container" tabIndex={0}>
@@ -129,11 +144,11 @@ const GameMap = () => {
                 </div>
                 <div className="nav-info">
                     <div className="nav-stat">
-                        <div className="nav-stat-value">7</div>
+                        <div className="nav-stat-value">{unlockedCount}/{totalCount}</div>
                         <div className="nav-stat-label">Planets</div>
                     </div>
                     <div className="nav-stat">
-                        <div className="nav-stat-value">2025</div>
+                        <div className="nav-stat-value">2026</div>
                         <div className="nav-stat-label">Mission</div>
                     </div>
                 </div>
@@ -152,7 +167,7 @@ const GameMap = () => {
                 <Constellations />
             </div>
 
-            {/* Space shuttle in center - flies to planets */}
+            {/* Millennium Falcon in center - flies to planets */}
             <div
                 className={`shuttle-wrapper ${isFlying ? 'flying' : ''}`}
                 style={{
@@ -160,7 +175,7 @@ const GameMap = () => {
                     top: `${shuttlePos.y}%`,
                 }}
             >
-                <SpaceShuttle rotation={shuttleRotation} />
+                <MillenniumFalcon rotation={shuttleRotation} />
             </div>
 
             {/* Planet destinations */}
@@ -171,22 +186,30 @@ const GameMap = () => {
                 return (
                     <div
                         key={topic.id}
-                        className={`planet ${topic.course} ${selectedIndex === index ? 'selected' : ''}`}
+                        className={`planet ${topic.course} ${selectedIndex === index ? 'selected' : ''} ${topic.locked ? 'locked' : ''}`}
                         style={{ left: `${dest.x}%`, top: `${dest.y}%` }}
-                        onClick={() => handlePlanetClick(topic.id, index)}
+                        onClick={() => handlePlanetClick(topic.id, index, topic.locked)}
                     >
                         <div className="planet-body">
                             <div className="planet-glow"></div>
-                            <span className="planet-icon">{topic.icon}</span>
+                            <span className="planet-icon">{topic.locked ? '🔒' : topic.icon}</span>
                         </div>
                         <div className="planet-label">{topic.name}</div>
+
+                        {/* Alien greeting on unlocked planets */}
+                        {!topic.locked && (
+                            <div className="alien-container">
+                                <div className="alien">👽</div>
+                                <div className="alien-speech">Hi!</div>
+                            </div>
+                        )}
                     </div>
                 );
             })}
 
             {/* Footer hint */}
             <div className="footer-hint">
-                <span>🚀 Use arrow keys + Enter, or click any planet to explore</span>
+                <span>🛸 Use arrow keys + Enter, or click any planet to explore</span>
             </div>
         </div>
     );

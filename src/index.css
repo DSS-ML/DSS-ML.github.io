@@ -877,6 +877,101 @@ h6 {
   color: #ef4444;
 }
 
+/* Locked planet styles */
+.planet.locked {
+  cursor: not-allowed;
+}
+
+.planet.locked .planet-body {
+  background: radial-gradient(circle at 30% 30%, #666 0%, #444 50%, #333 100%) !important;
+  box-shadow: 0 0 15px rgba(100, 100, 100, 0.3), inset -10px -10px 30px rgba(0, 0, 0, 0.4) !important;
+  filter: grayscale(0.7);
+}
+
+.planet.locked .planet-glow {
+  background: rgba(100, 100, 100, 0.2) !important;
+  animation: none !important;
+}
+
+.planet.locked:hover {
+  transform: translate(-50%, -50%) scale(1.02);
+}
+
+.planet.locked .planet-label {
+  color: var(--text-muted);
+}
+
+/* Alien greeting styles */
+.alien-container {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.alien {
+  font-size: 24px;
+  animation: alien-wave 2s infinite ease-in-out;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes alien-wave {
+  0%, 100% {
+    transform: rotate(-10deg) translateY(0);
+  }
+  25% {
+    transform: rotate(10deg) translateY(-3px);
+  }
+  50% {
+    transform: rotate(-10deg) translateY(0);
+  }
+  75% {
+    transform: rotate(10deg) translateY(-3px);
+  }
+}
+
+.alien-speech {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: speech-pop 3s infinite ease-in-out;
+}
+
+.alien-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(255, 255, 255, 0.95);
+}
+
+@keyframes speech-pop {
+  0%, 100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(0.95);
+  }
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
   .destination-marker {

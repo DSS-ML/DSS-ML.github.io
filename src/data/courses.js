@@ -8,43 +8,66 @@ export const courses = {
         description: 'Discover patterns in data without human guidance',
         topics: [
             {
-                id: 'clustering',
-                name: 'Clustering',
-                description: 'Group similar data points together using algorithms like K-Means, DBSCAN, and Hierarchical Clustering',
-                icon: '🎯',
+                id: 'introduction',
+                name: 'Introduction',
+                description: 'Introduction to Unsupervised Machine Learning and Metrics - Learn the fundamentals of unsupervised learning approaches',
+                icon: '📊',
                 difficulty: 'Beginner',
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2025/tree/main/Clustering',
+                locked: false,
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/tree/main/Introduction',
                 notebooks: [
-                    { name: 'Lecture', file: 'Clustering_Lecture.ipynb', type: 'lecture' },
-                    { name: 'Assignment', file: 'Clustering_Assignment.ipynb', type: 'assignment' },
-                    { name: 'Solution', file: 'Clustering_Solution.ipynb', type: 'solution' }
+                    { name: 'Lecture', file: 'Introduction_Lecture.ipynb', type: 'lecture' }
                 ]
             },
             {
-                id: 'dimensionality-reduction',
-                name: 'Dimensionality Reduction',
-                description: 'Reduce data complexity while preserving information using PCA, t-SNE, and UMAP',
-                icon: '📉',
-                difficulty: 'Intermediate',
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2025/tree/main/DimensionalityReduction',
-                notebooks: [
-                    { name: 'Lecture', file: 'DimensionalityReduction_Lecture.ipynb', type: 'lecture' },
-                    { name: 'Assignment', file: 'DimensionalityReduction_Assignment.ipynb', type: 'assignment' },
-                    { name: 'Solution', file: 'DimensionalityReduction_Solution.ipynb', type: 'solution' }
-                ]
+                id: 'topic-2',
+                name: 'Coming Soon',
+                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
+                icon: '🔒',
+                difficulty: 'TBD',
+                locked: true,
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
+                notebooks: []
             },
             {
-                id: 'recommender-systems',
-                name: 'Recommender Systems',
-                description: 'Build systems that suggest relevant items to users based on their preferences',
-                icon: '⭐',
-                difficulty: 'Advanced',
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2025/tree/main/RecommenderSystem',
-                notebooks: [
-                    { name: 'Lecture', file: 'RecommenderSystem_Lecture.ipynb', type: 'lecture' },
-                    { name: 'Assignment', file: 'RecommenderSystem_Assignment.ipynb', type: 'assignment' },
-                    { name: 'Solution', file: 'RecommenderSystem_Solution.ipynb', type: 'solution' }
-                ]
+                id: 'topic-3',
+                name: 'Coming Soon',
+                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
+                icon: '🔒',
+                difficulty: 'TBD',
+                locked: true,
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
+                notebooks: []
+            },
+            {
+                id: 'topic-4',
+                name: 'Coming Soon',
+                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
+                icon: '🔒',
+                difficulty: 'TBD',
+                locked: true,
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
+                notebooks: []
+            },
+            {
+                id: 'topic-5',
+                name: 'Coming Soon',
+                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
+                icon: '🔒',
+                difficulty: 'TBD',
+                locked: true,
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
+                notebooks: []
+            },
+            {
+                id: 'topic-6',
+                name: 'Coming Soon',
+                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
+                icon: '🔒',
+                difficulty: 'TBD',
+                locked: true,
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
+                notebooks: []
             }
         ]
     },
@@ -62,6 +85,7 @@ export const courses = {
                 description: 'Foundations of deep learning: perceptrons, activation functions, and backpropagation',
                 icon: '🧠',
                 difficulty: 'Beginner',
+                locked: false,
                 baseUrl: 'https://github.com/DSS-ML/DeepLearning_MIX/blob/main',
                 notebooks: [
                     { name: 'Lecture', file: 'Network_Lecture.ipynb', type: 'lecture' }
@@ -73,6 +97,7 @@ export const courses = {
                 description: 'Practical guide to building, training, and deploying deep learning models',
                 icon: '🔧',
                 difficulty: 'Intermediate',
+                locked: false,
                 baseUrl: 'https://github.com/DSS-ML/DeepLearning_MIX/blob/main',
                 notebooks: [
                     { name: 'Lecture', file: 'HowTo_Lecture.ipynb', type: 'lecture' }
@@ -84,6 +109,7 @@ export const courses = {
                 description: 'Learn to process graph-structured data with message passing and node embeddings',
                 icon: '🕸️',
                 difficulty: 'Advanced',
+                locked: false,
                 baseUrl: 'https://github.com/DSS-ML/DeepLearning_MIX/blob/main',
                 notebooks: [
                     { name: 'Lecture', file: 'GNN_Lecture.ipynb', type: 'lecture' }
@@ -95,6 +121,7 @@ export const courses = {
                 description: 'Explore attention mechanisms, BERT, GPT, and state-of-the-art architectures',
                 icon: '🤖',
                 difficulty: 'Advanced',
+                locked: false,
                 baseUrl: 'https://github.com/DSS-ML/DeepLearning_MIX/blob/main',
                 notebooks: [
                     { name: 'Lecture', file: 'Transformer%26OtherMonsters_Lecture.ipynb', type: 'lecture' },
