@@ -1020,7 +1020,7 @@ h6 {
 /* Alien greeting styles */
 .alien-container {
   position: absolute;
-  top: -45px;
+  top: -55px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1029,10 +1029,11 @@ h6 {
   pointer-events: none;
 }
 
-.alien {
-  font-size: 24px;
+.baby-yoda {
+  width: 45px;
+  height: auto;
   animation: alien-wave 2s infinite ease-in-out;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
 }
 
 @keyframes alien-wave {

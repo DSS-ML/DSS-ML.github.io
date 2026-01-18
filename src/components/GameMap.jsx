@@ -173,10 +173,10 @@ const GameMap = () => {
                         </div>
                         <div className="planet-label">{topic.name}</div>
 
-                        {/* Alien greeting on unlocked planets */}
+                        {/* Baby Yoda greeting on unlocked planets */}
                         {!topic.locked && (
                             <div className="alien-container">
-                                <div className="alien">👽</div>
+                                <img src="/babyyoda.png" alt="Baby Yoda" className="baby-yoda" />
                                 <div className="alien-speech">Hi!</div>
                             </div>
                         )}
