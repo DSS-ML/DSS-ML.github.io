@@ -40,8 +40,7 @@ const WelcomePage = () => {
                 <div className="welcome-crawl">
                     <h1 className="welcome-title">Welcome to DSS-ML</h1>
                     <p className="welcome-subtitle">
-                        A GitHub profile dedicated to teaching<br />
-                        Data Science & Machine Learning
+                        Data Science & Friends
                     </p>
                 </div>
 
