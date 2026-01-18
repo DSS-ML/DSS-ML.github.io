@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MillenniumFalcon from './MillenniumFalcon';
 import Stars from './Stars';
-import Constellations from './Constellations';
 import { courses } from '../data/courses';
 
 const GameMap = () => {
@@ -12,29 +11,19 @@ const GameMap = () => {
     const [shuttleRotation, setShuttleRotation] = useState(0);
     const [isFlying, setIsFlying] = useState(false);
 
-    // All topics with positions
+    // All topics - only Unsupervised Learning for 2026
     const allTopics = [
-        ...courses.unsupervised.topics.map(t => ({ ...t, course: 'unsupervised' })),
-        ...courses.deepLearning.topics.map(t => ({ ...t, course: 'deep-learning' }))
+        ...courses.unsupervised.topics.map(t => ({ ...t, course: 'unsupervised' }))
     ];
 
-    // Planet positions (as percentages) - Two constellations
-    // Left: 6 Unsupervised planets in 2x3 grid
-    // Right: 4 Deep Learning planets
+    // Planet positions (as percentages) - 6 Unsupervised planets in 2x3 grid, centered
     const destinations = {
-        // Left constellation - Unsupervised Learning (2 columns x 3 rows)
-        'introduction': { x: 18, y: 22, angle: -30 },
-        'topic-2': { x: 32, y: 22, angle: -15 },
-        'topic-3': { x: 18, y: 47, angle: -45 },
-        'topic-4': { x: 32, y: 47, angle: 0 },
-        'topic-5': { x: 18, y: 72, angle: -60 },
-        'topic-6': { x: 32, y: 72, angle: -30 },
-
-        // Right constellation - Deep Learning  
-        'networks': { x: 75, y: 15, angle: 30 },
-        'howto': { x: 82, y: 35, angle: 15 },
-        'gnn': { x: 82, y: 58, angle: -15 },
-        'transformers': { x: 75, y: 82, angle: -30 }
+        'introduction': { x: 38, y: 25, angle: -30 },
+        'topic-2': { x: 62, y: 25, angle: 30 },
+        'topic-3': { x: 38, y: 50, angle: -15 },
+        'topic-4': { x: 62, y: 50, angle: 15 },
+        'topic-5': { x: 38, y: 75, angle: -45 },
+        'topic-6': { x: 62, y: 75, angle: 45 }
     };
 
     // Center position
@@ -76,21 +65,17 @@ const GameMap = () => {
         if (isFlying) return;
 
         const topicCount = allTopics.length;
-        const unlockedTopics = allTopics.filter(t => !t.locked);
 
         switch (e.key) {
             case 'ArrowLeft':
-                e.preventDefault();
-                setSelectedIndex(prev => {
-                    const newIndex = prev <= 5 && prev >= 0 ? (prev + 1) % 6 : 0;
-                    return newIndex;
-                });
-                break;
             case 'ArrowRight':
                 e.preventDefault();
                 setSelectedIndex(prev => {
-                    const newIndex = prev >= 6 ? ((prev - 6 + 1) % 4) + 6 : 6;
-                    return newIndex;
+                    if (prev < 0) return 0;
+                    // Toggle between left and right columns
+                    const row = Math.floor(prev / 2);
+                    const col = prev % 2;
+                    return row * 2 + (1 - col);
                 });
                 break;
             case 'ArrowUp':
@@ -154,17 +139,9 @@ const GameMap = () => {
                 </div>
             </header>
 
-            {/* Constellation labels at top */}
-            <div className="constellation-label unsupervised">
+            {/* Constellation label centered */}
+            <div className="constellation-label unsupervised" style={{ left: '50%', transform: 'translateX(-50%)' }}>
                 ✨ Unsupervised Learning
-            </div>
-            <div className="constellation-label deep-learning">
-                ✨ Deep Learning
-            </div>
-
-            {/* Constellation lines */}
-            <div className="constellations-container">
-                <Constellations />
             </div>
 
             {/* Millennium Falcon in center - flies to planets */}

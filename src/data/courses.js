@@ -14,9 +14,9 @@ export const courses = {
                 icon: '📊',
                 difficulty: 'Beginner',
                 locked: false,
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/tree/main/Introduction',
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
                 notebooks: [
-                    { name: 'Lecture', file: 'Introduction_Lecture.ipynb', type: 'lecture' }
+                    { name: 'Lecture', file: 'Lecture_1.ipynb', type: 'lecture' }
                 ]
             },
             {
@@ -70,72 +70,12 @@ export const courses = {
                 notebooks: []
             }
         ]
-    },
-    deepLearning: {
-        id: 'deep-learning',
-        name: 'Deep Learning',
-        subtitle: 'Neural Networks & Beyond',
-        color: '#ff6b35',
-        glowColor: 'rgba(255, 107, 53, 0.4)',
-        description: 'Master the architectures powering modern AI',
-        topics: [
-            {
-                id: 'networks',
-                name: 'Neural Networks',
-                description: 'Foundations of deep learning: perceptrons, activation functions, and backpropagation',
-                icon: '🧠',
-                difficulty: 'Beginner',
-                locked: false,
-                baseUrl: 'https://github.com/DSS-ML/DeepLearning_MIX/blob/main',
-                notebooks: [
-                    { name: 'Lecture', file: 'Network_Lecture.ipynb', type: 'lecture' }
-                ]
-            },
-            {
-                id: 'howto',
-                name: 'How To Build Models',
-                description: 'Practical guide to building, training, and deploying deep learning models',
-                icon: '🔧',
-                difficulty: 'Intermediate',
-                locked: false,
-                baseUrl: 'https://github.com/DSS-ML/DeepLearning_MIX/blob/main',
-                notebooks: [
-                    { name: 'Lecture', file: 'HowTo_Lecture.ipynb', type: 'lecture' }
-                ]
-            },
-            {
-                id: 'gnn',
-                name: 'Graph Neural Networks',
-                description: 'Learn to process graph-structured data with message passing and node embeddings',
-                icon: '🕸️',
-                difficulty: 'Advanced',
-                locked: false,
-                baseUrl: 'https://github.com/DSS-ML/DeepLearning_MIX/blob/main',
-                notebooks: [
-                    { name: 'Lecture', file: 'GNN_Lecture.ipynb', type: 'lecture' }
-                ]
-            },
-            {
-                id: 'transformers',
-                name: 'Transformers & Other Monsters',
-                description: 'Explore attention mechanisms, BERT, GPT, and state-of-the-art architectures',
-                icon: '🤖',
-                difficulty: 'Advanced',
-                locked: false,
-                baseUrl: 'https://github.com/DSS-ML/DeepLearning_MIX/blob/main',
-                notebooks: [
-                    { name: 'Lecture', file: 'Transformer%26OtherMonsters_Lecture.ipynb', type: 'lecture' },
-                    { name: 'Assignment', file: 'Transformer%26OtherMonster_Assignment.ipynb', type: 'assignment' }
-                ]
-            }
-        ]
     }
 };
 
 export const getAllTopics = () => {
     return [
-        ...courses.unsupervised.topics.map(t => ({ ...t, course: courses.unsupervised })),
-        ...courses.deepLearning.topics.map(t => ({ ...t, course: courses.deepLearning }))
+        ...courses.unsupervised.topics.map(t => ({ ...t, course: courses.unsupervised }))
     ];
 };
 
