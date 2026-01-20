@@ -52,14 +52,17 @@ export const courses = {
                 ]
             },
             {
-                id: 'topic-2',
-                name: 'Coming Soon',
-                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
-                icon: '🔒',
-                difficulty: 'TBD',
-                locked: true,
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
-                notebooks: []
+                id: 'clustering',
+                name: 'Clustering',
+                description: 'Clustering algorithms and techniques - Group similar data points together',
+                icon: '🎯',
+                difficulty: '',
+                locked: false,
+                image: '/Darth_Vader.png',
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
+                notebooks: [
+                    { name: 'Lecture', file: 'Lecture_2A.ipynb', type: 'lecture' }
+                ]
             },
             {
                 id: 'topic-3',
