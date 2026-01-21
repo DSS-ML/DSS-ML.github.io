@@ -19,7 +19,7 @@ const GameMap = () => {
     // Planet positions (as percentages) - 6 Unsupervised planets in 2x3 grid, centered
     const destinations = {
         'introduction': { x: 38, y: 25, angle: -30 },
-        'topic-2': { x: 62, y: 25, angle: 30 },
+        'clustering': { x: 62, y: 25, angle: 30 },
         'topic-3': { x: 38, y: 50, angle: -15 },
         'topic-4': { x: 62, y: 50, angle: 15 },
         'topic-5': { x: 38, y: 75, angle: -45 },
@@ -173,11 +173,20 @@ const GameMap = () => {
                         </div>
                         <div className="planet-label">{topic.name}</div>
 
-                        {/* Baby Yoda greeting on unlocked planets */}
+                        {/* Character greeting on unlocked planets */}
                         {!topic.locked && (
                             <div className="alien-container">
-                                <img src="/babyyoda.png" alt="Baby Yoda" className="baby-yoda" />
-                                <div className="alien-speech">Hi!</div>
+                                {topic.image ? (
+                                    <>
+                                        <img src={topic.image} alt={topic.name} className="planet-character" />
+                                        <div className="alien-speech">Join me!</div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <img src="/babyyoda.png" alt="Baby Yoda" className="baby-yoda" />
+                                        <div className="alien-speech">Hi!</div>
+                                    </>
+                                )}
                             </div>
                         )}
                     </div>

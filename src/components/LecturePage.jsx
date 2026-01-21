@@ -88,11 +88,7 @@ const LecturePage = () => {
                     {topic.description}
                 </p>
 
-                {topic.image && (
-                    <div className="topic-image-section">
-                        <img src={topic.image} alt={topic.name} className="topic-hero-image" />
-                    </div>
-                )}
+
 
                 <div className="notebooks-section">
                     <h2>📚 Course Materials</h2>

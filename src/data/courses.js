@@ -55,7 +55,7 @@ export const courses = {
                 id: 'clustering',
                 name: 'Clustering',
                 description: 'Clustering algorithms and techniques - Group similar data points together',
-                icon: '🎯',
+                icon: '🧩',
                 difficulty: '',
                 locked: false,
                 image: '/Darth_Vader.png',
