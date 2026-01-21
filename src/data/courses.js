@@ -61,7 +61,8 @@ export const courses = {
                 image: '/Darth_Vader.png',
                 baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
                 notebooks: [
-                    { name: 'Lecture', file: 'Lecture_2A.ipynb', type: 'lecture' }
+                    { name: 'Lecture', file: 'Lecture_2A.ipynb', type: 'lecture' },
+                    { name: 'Lecture', file: 'Lecture_2B.ipynb', type: 'lecture' }
                 ]
             },
             {
