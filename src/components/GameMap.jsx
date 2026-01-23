@@ -20,7 +20,7 @@ const GameMap = () => {
     const destinations = {
         'introduction': { x: 38, y: 25, angle: -30 },
         'clustering': { x: 62, y: 25, angle: 30 },
-        'topic-3': { x: 38, y: 50, angle: -15 },
+        'dimensionality-reduction': { x: 38, y: 50, angle: -15 },
         'topic-4': { x: 62, y: 50, angle: 15 },
         'topic-5': { x: 38, y: 75, angle: -45 },
         'topic-6': { x: 62, y: 75, angle: 45 }
@@ -179,7 +179,7 @@ const GameMap = () => {
                                 {topic.image ? (
                                     <>
                                         <img src={topic.image} alt={topic.name} className="planet-character" />
-                                        <div className="alien-speech">Join me!</div>
+                                        <div className="alien-speech">{topic.characterDialogue || 'Join me!'}</div>
                                     </>
                                 ) : (
                                     <>

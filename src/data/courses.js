@@ -66,14 +66,18 @@ export const courses = {
                 ]
             },
             {
-                id: 'topic-3',
-                name: 'Coming Soon',
-                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
-                icon: '🔒',
-                difficulty: 'TBD',
-                locked: true,
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
-                notebooks: []
+                id: 'dimensionality-reduction',
+                name: 'Dimensionality Reduction',
+                description: 'Dimensionality reduction techniques - Learn how to reduce the number of features while preserving important information',
+                icon: '📉',
+                difficulty: '',
+                locked: false,
+                image: '/bobafett.png',
+                characterDialogue: '...',
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
+                notebooks: [
+                    { name: 'Lecture', file: 'Lecture_3.ipynb', type: 'lecture' }
+                ]
             },
             {
                 id: 'topic-4',
