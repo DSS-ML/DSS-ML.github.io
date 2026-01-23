@@ -88,9 +88,9 @@ export const courses = {
                 locked: false,
                 image: '/jarja.png',
                 characterDialogue: 'Meesa help you!',
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/tree/main/assignment',
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/tree/main/Assignment',
                 notebooks: [
-                    { name: 'Assignment PDF', file: 'assignment.pdf', type: 'assignment' },
+                    { name: 'Assignment PDF', file: 'Assignment_Unsupervised-1.pdf', type: 'assignment' },
                     { name: 'Data Files', file: '', type: 'data' }
                 ]
             },
