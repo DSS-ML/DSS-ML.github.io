@@ -28,6 +28,7 @@ const LecturePage = () => {
             case 'lecture': return '📖';
             case 'assignment': return '📝';
             case 'solution': return '✅';
+            case 'data': return '📊';
             default: return '📄';
         }
     };
@@ -37,6 +38,7 @@ const LecturePage = () => {
             case 'lecture': return 'Theory, code examples, and explanations';
             case 'assignment': return 'Hands-on practice exercises';
             case 'solution': return 'Complete solutions with explanations';
+            case 'data': return 'Dataset files for the assignment';
             default: return 'Jupyter Notebook';
         }
     };
@@ -46,7 +48,13 @@ const LecturePage = () => {
         if (topic.baseUrl.includes('/blob/')) {
             return `${topic.baseUrl}/${notebook.file}`;
         }
-        // For tree links (directories), link to the folder
+        // For tree links (directories)
+        if (notebook.file) {
+            // Replace /tree/ with /blob/ for direct file links
+            const blobUrl = topic.baseUrl.replace('/tree/', '/blob/');
+            return `${blobUrl}/${notebook.file}`;
+        }
+        // No file specified, link to the folder itself
         return topic.baseUrl;
     };
 

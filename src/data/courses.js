@@ -80,14 +80,19 @@ export const courses = {
                 ]
             },
             {
-                id: 'topic-4',
-                name: 'Coming Soon',
-                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
-                icon: '🔒',
-                difficulty: 'TBD',
-                locked: true,
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
-                notebooks: []
+                id: 'first-assignment',
+                name: '1st Assignment',
+                description: 'First assignment - Put your unsupervised learning skills to the test!',
+                icon: '📝',
+                difficulty: '',
+                locked: false,
+                image: '/jarja.png',
+                characterDialogue: 'Meesa help you!',
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/tree/main/assignment',
+                notebooks: [
+                    { name: 'Assignment PDF', file: 'assignment.pdf', type: 'assignment' },
+                    { name: 'Data Files', file: '', type: 'data' }
+                ]
             },
             {
                 id: 'topic-5',
