@@ -95,14 +95,18 @@ export const courses = {
                 ]
             },
             {
-                id: 'topic-5',
-                name: 'Coming Soon',
-                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
-                icon: '🔒',
-                difficulty: 'TBD',
-                locked: true,
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
-                notebooks: []
+                id: 'recommender-system',
+                name: 'Recommender System',
+                description: 'Recommender systems - Learn how to build systems that predict user preferences',
+                icon: '🤖',
+                difficulty: '',
+                locked: false,
+                image: '/r2d2.png',
+                characterDialogue: '01010011 01110100 01110101 01100100 01111001',
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
+                notebooks: [
+                    { name: 'Lecture', file: 'Lecture_4.ipynb', type: 'lecture' }
+                ]
             },
             {
                 id: 'topic-6',
