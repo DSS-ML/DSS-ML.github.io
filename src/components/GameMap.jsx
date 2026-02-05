@@ -22,7 +22,7 @@ const GameMap = () => {
         'clustering': { x: 62, y: 25, angle: 30 },
         'dimensionality-reduction': { x: 38, y: 50, angle: -15 },
         'first-assignment': { x: 62, y: 50, angle: 15 },
-        'topic-5': { x: 38, y: 75, angle: -45 },
+        'recommender-system': { x: 38, y: 75, angle: -45 },
         'topic-6': { x: 62, y: 75, angle: 45 }
     };
 
