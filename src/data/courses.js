@@ -117,7 +117,7 @@ export const courses = {
                 icon: '🧠',
                 difficulty: '',
                 locked: false,
-                image: '/Luke.png',
+                image: '/luke.png',
                 characterDialogue: 'The latent space is strong with this one!',
                 baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
                 notebooks: [
