@@ -111,14 +111,18 @@ export const courses = {
                 ]
             },
             {
-                id: 'topic-6',
-                name: 'Coming Soon',
-                description: 'New lesson coming soon - Stay tuned for more unsupervised learning content!',
-                icon: '🔒',
-                difficulty: 'TBD',
-                locked: true,
-                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026',
-                notebooks: []
+                id: 'autoencoders',
+                name: 'Autoencoders',
+                description: 'Autoencoders - Learn how to compress and reconstruct data using neural networks',
+                icon: '🧠',
+                difficulty: '',
+                locked: false,
+                image: '/Luke.png',
+                characterDialogue: 'The latent space is strong with this one!',
+                baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
+                notebooks: [
+                    { name: 'Lecture', file: 'Lecture_5.ipynb', type: 'lecture' }
+                ]
             }
         ]
     }
