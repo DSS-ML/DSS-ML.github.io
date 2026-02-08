@@ -23,7 +23,7 @@ const GameMap = () => {
         'dimensionality-reduction': { x: 38, y: 50, angle: -15 },
         'first-assignment': { x: 62, y: 50, angle: 15 },
         'recommender-system': { x: 38, y: 75, angle: -45 },
-        'topic-6': { x: 62, y: 75, angle: 45 }
+        'autoencoders': { x: 62, y: 75, angle: 45 }
     };
 
     // Center position
