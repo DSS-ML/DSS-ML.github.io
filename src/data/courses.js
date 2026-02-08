@@ -121,7 +121,8 @@ export const courses = {
                 characterDialogue: 'The latent space is strong with this one!',
                 baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
                 notebooks: [
-                    { name: 'Lecture', file: 'Lecture_5.ipynb', type: 'lecture' }
+                    { name: 'Lecture', file: 'Lecture_5.ipynb', type: 'lecture' },
+                    { name: 'Assignment PDF', file: 'Assignment/Assignment_Unsupervised3.pdf', type: 'assignment' }
                 ]
             }
         ]
