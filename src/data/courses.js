@@ -91,7 +91,8 @@ export const courses = {
                 baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/tree/main/Assignment',
                 notebooks: [
                     { name: 'Assignment PDF', file: 'Assignment_Unsupervised-1.pdf', type: 'assignment' },
-                    { name: 'Data Files', file: '', type: 'data' }
+                    { name: 'Data Files', file: '', type: 'data' },
+                    { name: 'Solution', file: 'Assignment_Solution.ipynb', type: 'solution' }
                 ]
             },
             {
