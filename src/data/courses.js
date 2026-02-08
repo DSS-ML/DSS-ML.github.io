@@ -105,7 +105,8 @@ export const courses = {
                 characterDialogue: '01010011 01110100 01110101 01100100 01111001',
                 baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
                 notebooks: [
-                    { name: 'Lecture', file: 'Lecture_4.ipynb', type: 'lecture' }
+                    { name: 'Lecture', file: 'Lecture_4.ipynb', type: 'lecture' },
+                    { name: 'Assignment PDF', file: 'Assignment/Assignment_Unsupervised2-1.pdf', type: 'assignment' }
                 ]
             },
             {
