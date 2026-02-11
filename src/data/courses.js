@@ -107,6 +107,7 @@ export const courses = {
                 baseUrl: 'https://github.com/DSS-ML/Unsupervised_2026/blob/main',
                 notebooks: [
                     { name: 'Lecture', file: 'Lecture_4.ipynb', type: 'lecture' },
+                    { name: 'Demo: String Matching', file: 'Demo_String_Matching.ipynb', type: 'lecture' },
                     { name: 'Assignment PDF', file: 'Assignment/Assignment_Unsupervised2-1.pdf', type: 'assignment' }
                 ]
             },
